@@ -1,0 +1,62 @@
+<title>Create Your Todo</title>
+{% include 'header.html' %}
+<div class="row">
+  <div class="col-sm-4">
+<div class="container mt-5">
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="card text-center mx-auto">
+    <br><h6 class="text-center alert alert-info">Welcome {{request.user.first_name}} {{request.user.last_name}}</h6><hr>
+    <div class="card-header">
+      <h2>Add Todo</h2>    
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label  class="form-label">Todo Title</label>
+        <input type="text" class="form-control" name="todo_name" required>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Todo Description</label>
+        <textarea class="form-control" name="todo_description"></textarea> 
+      </div>
+       <button type="submit" class="btn btn-primary">Add Todo</button>
+  </div>
+  </form>
+</div>
+</div>
+</div>
+
+
+<div class="container mt-5 col-md-8">
+  {% csrf_token %}
+
+  <table class="table">
+  <thead>
+    <tr>
+    <th scope="col">Sr No.</th>
+    <th scope="col">Todo Name</th>
+    <th scope="col">Todo Description</th>
+    <th scope="col">Update</th> 
+    <th scope="col">Delete</th> 
+    
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for n in todos %}
+  
+      
+    <tr>
+      <th scope="col">{{forloop.counter}}</th>
+      <td>{{n.todo_name}}</td>
+      <td>{{n.todo_description}}</td>
+      <td><a href="/update-todo/{{n.id}}/" class="btn btn-success">Update</a></td>
+      <td><a href="/delete-todo/{{n.id}}/" class="btn btn-danger">Delete</a></td>
+    </tr>
+        
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+</body>
+</html>

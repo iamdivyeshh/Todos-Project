@@ -1,0 +1,36 @@
+{% include 'header.html' %}
+
+
+<div class="container mt-5 col-md-8">
+    {% csrf_token %}
+
+    <table class="table">
+    <thead>
+      <tr>
+      <th scope="col">Sr No.</th>
+      <th scope="col">Todo Name</th>
+      <th scope="col">Todo Description</th>
+      <th scope="col">Update</th> 
+      <th scope="col">Delete</th> 
+      
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for n in todos %}
+    
+        
+      <tr>
+        <th scope="col">{{forloop.counter}}</th>
+        <td>{{n.todo_name}}</td>
+        <td>{{n.todo_description}}</td>
+        <td><a href="/update-todo/{{n.id}}/" class="btn btn-success">Update</a></td>
+        <td><a href="/delete-todo/{{n.id}}/" class="btn btn-danger">Delete</a></td>
+      </tr>
+          
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+</body>
+</html>

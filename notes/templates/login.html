@@ -1,0 +1,46 @@
+
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  {% include 'header.html' %}
+<div class="container mt-5">
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+     
+
+  <div class="card text-center col-md-6 mx-auto">
+    <div class="alert alert-primary d-flex align-items-center" role="alert>
+      {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    </div>
+    <div class="card-header">
+      <h2>Login</h2>  
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label card-text">Username</label>
+        <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+      </div>
+      <p class="card-text">Don't have account? - <a href="/register/">Register</a></p>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <div class="card-footer text-body-secondary">
+      
+    </div>
+  </div>
+  </form>
+</div>
+</div>
+</body>
+</html>
